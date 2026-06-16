@@ -20,7 +20,10 @@ const createComplaint = async (req, res) => {
       latitude,
       longitude,
       image,
-    } = req.body;
+    } = req.body || {};
+
+    console.log('BODY:', req.body);
+    console.log('CONTENT-TYPE:', req.headers['content-type']);
 
     // Validate required fields (landmark is optional)
     if (
