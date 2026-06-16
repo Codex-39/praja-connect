@@ -104,7 +104,8 @@ const NewComplaint = () => {
         image: imagePreview // Send the base64 image string
       };
 
-      await api.createComplaint(payload);
+              console.log('Payload being sent', payload);
+        await api.createComplaint(payload);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to submit complaint');
