@@ -99,25 +99,12 @@ const NewComplaint = () => {
 
     try {
       console.log('Submitting complaint with data:', formData);
-      const data = new FormData();
-      data.append('citizenName', formData.citizenName);
-      data.append('mobileNumber', formData.mobileNumber);
-      data.append('colonyName', formData.colonyName);
-      data.append('streetName', formData.streetName);
-      data.append('wardNumber', formData.wardNumber);
-      data.append('landmark', formData.landmark);
-      data.append('category', formData.category);
-      data.append('issueTitle', formData.issueTitle);
-      data.append('issueDescription', formData.issueDescription);
-      data.append('priority', formData.priority);
-    data.append('pincode', formData.pincode);
-    data.append('latitude', formData.latitude);
-    data.append('longitude', formData.longitude);
-      if (image) {
-        data.append('image', image);
-      }
+      const payload = {
+        ...formData,
+        image: imagePreview // Send the base64 image string
+      };
 
-      await api.createComplaint(data);
+      await api.createComplaint(payload);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to submit complaint');

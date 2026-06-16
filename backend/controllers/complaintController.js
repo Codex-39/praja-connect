@@ -19,6 +19,7 @@ const createComplaint = async (req, res) => {
       pincode,
       latitude,
       longitude,
+      image,
     } = req.body;
 
     // Validate required fields (landmark is optional)
@@ -37,10 +38,7 @@ const createComplaint = async (req, res) => {
       return res.status(400).json({ message: 'Please add all required fields' });
     }
 
-    let imageUrl = '';
-    if (req.file) {
-      imageUrl = `/uploads/${req.file.filename}`;
-    }
+    let imageUrl = image || '';
 
     // FormData sends everything as strings; parse lat/lng to numbers
     const parsedLat = latitude ? parseFloat(latitude) : undefined;

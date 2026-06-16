@@ -16,7 +16,7 @@ const upload = require('../middleware/upload');
 router.route('/analytics').get(protect, admin, getAnalytics);
 
 router.route('/')
-  .post(protect, upload.single('image'), createComplaint)
+  .post(protect, createComplaint)
   .get(protect, admin, getComplaints);
 
 router.route('/my').get(protect, getMyComplaints);
